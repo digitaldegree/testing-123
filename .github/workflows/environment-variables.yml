@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Print custom environment variables from windows-latest
         env:
-          STEP_ENVIRONMENT_VARIABLE: 'custom step environment variable for powershell'
+          STEP_ENVIRONMENT_VARIABLE: 'YOOOOOOO'
         run: |
           echo "Accessing environment variables in run command"
           echo "$Env:WORKSPACE_ENVIRONMENT_VARIABLE"
