@@ -1,41 +1,78 @@
-name: Environment Variables
+name: 🌍 Environment Explorer
+
+# Global environment variable – available everywhere unless overridden
 env:
-  WORKSPACE_ENVIRONMENT_VARIABLE: 'custom workspace environment variable'
+  GLOBAL_MESSAGE: "🚀 Welcome to the Environment Explorer!"
+
 on: [push]
+
 jobs:
-  ubuntu:
-    env:
-      JOB_ENVIRONMENT_VARIABLE: 'custom job environment variable for ubuntu'
+  explore-on-ubuntu:
+    name: 🔍 Explore on Ubuntu
     runs-on: ubuntu-latest
-    steps:
-      - name: Print custom environment variables from ubuntu-latest
-        env:
-          STEP_ENVIRONMENT_VARIABLE: 'custom step environment variable for bash'
-        run: |
-          echo "Accessing environment variables in run command"
-          echo "$WORKSPACE_ENVIRONMENT_VARIABLE"
-          echo "$JOB_ENVIRONMENT_VARIABLE"
-          echo "$STEP_ENVIRONMENT_VARIABLE"
-          echo "------------------------------------------------------"
-          echo "Accessing environment variables using env context"
-          echo "${{ env.WORKSPACE_ENVIRONMENT_VARIABLE }}"
-          echo "${{ env.JOB_ENVIRONMENT_VARIABLE }}"
-          echo "${{ env.STEP_ENVIRONMENT_VARIABLE }} (Not defined)"
-  windows:
+
+    # Override GLOBAL_MESSAGE at the job level
     env:
-      JOB_ENVIRONMENT_VARIABLE: 'custom job environment variable for windows'
-    runs-on: windows-latest
+      GLOBAL_MESSAGE: "🚀 Ubuntu Job Override"
+      PLATFORM: "ubuntu-latest"
+      JOB_MESSAGE: "📦 Job-level variable for Ubuntu"
+
     steps:
-      - name: Print custom environment variables from windows-latest
-        env:
-          STEP_ENVIRONMENT_VARIABLE: 'YOOOOOOO'
+      - name: 🔎 Step 1 - Default Job Env
         run: |
-          echo "Accessing environment variables in run command"
-          echo "$Env:WORKSPACE_ENVIRONMENT_VARIABLE"
-          echo "$Env:JOB_ENVIRONMENT_VARIABLE"
-          echo "$Env:STEP_ENVIRONMENT_VARIABLE"
-          echo "------------------------------------------------------"
-          echo "Accessing environment variables using env context"
-          echo "${{ env.WORKSPACE_ENVIRONMENT_VARIABLE }}"
-          echo "${{ env.JOB_ENVIRONMENT_VARIABLE }}"
-          echo "${{ env.STEP_ENVIRONMENT_VARIABLE }} (Not defined)"
+          echo ""
+          echo "🌍 GLOBAL_MESSAGE (job level): $GLOBAL_MESSAGE"
+          echo "📦 JOB_MESSAGE: $JOB_MESSAGE"
+          echo "🖥️  PLATFORM: $PLATFORM"
+
+      - name: 🔧 Step 2 - Override at Step Level
+        env:
+          GLOBAL_MESSAGE: "🚀 Step-Level Ubuntu Override"
+          STEP_MESSAGE: "🔧 Step-level variable (Ubuntu)"
+        run: |
+          echo ""
+          echo "🌍 GLOBAL_MESSAGE (step level): $GLOBAL_MESSAGE"
+          echo "🔧 STEP_MESSAGE: $STEP_MESSAGE"
+
+      - name: 📦 Show Default GitHub Environment Variables
+        run: |
+          echo ""
+          echo "📁 GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "📣 GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          echo "👤 GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "🆔 GITHUB_JOB: $GITHUB_JOB"
+
+  explore-on-windows:
+    name: 🔍 Explore on Windows
+    runs-on: windows-latest
+
+    # Override GLOBAL_MESSAGE at the job level
+    env:
+      GLOBAL_MESSAGE: "🚀 Windows Job Override"
+      PLATFORM: "windows-latest"
+      JOB_MESSAGE: "📦 Job-level variable for Windows"
+
+    steps:
+      - name: 🔎 Step 1 - Default Job Env
+        run: |
+          Write-Output ""
+          Write-Output "🌍 GLOBAL_MESSAGE (job level): $Env:GLOBAL_MESSAGE"
+          Write-Output "📦 JOB_MESSAGE: $Env:JOB_MESSAGE"
+          Write-Output "🖥️  PLATFORM: $Env:PLATFORM"
+
+      - name: 🔧 Step 2 - Override at Step Level
+        env:
+          GLOBAL_MESSAGE: "🚀 Step-Level Windows Override"
+          STEP_MESSAGE: "🔧 Step-level variable (Windows)"
+        run: |
+          Write-Output ""
+          Write-Output "🌍 GLOBAL_MESSAGE (step level): $Env:GLOBAL_MESSAGE"
+          Write-Output "🔧 STEP_MESSAGE: $Env:STEP_MESSAGE"
+
+      - name: 📦 Show Default GitHub Environment Variables
+        run: |
+          Write-Output ""
+          Write-Output "📁 GITHUB_WORKSPACE: $Env:GITHUB_WORKSPACE"
+          Write-Output "📣 GITHUB_EVENT_NAME: $Env:GITHUB_EVENT_NAME"
+          Write-Output "👤 GITHUB_ACTOR: $Env:GITHUB_ACTOR"
+          Write-Output "🆔 GITHUB_JOB: $Env:GITHUB_JOB"
