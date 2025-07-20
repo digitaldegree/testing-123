@@ -29,16 +29,16 @@ jobs:
           echo "🌍 GLOBAL_MESSAGE (shell): $GLOBAL_MESSAGE"
           echo "📦 JOB_MESSAGE (shell): $JOB_MESSAGE"
           echo "🖥️ PLATFORM (shell): $PLATFORM"
-          echo "⚙️ MODE (YAML): ${{ env.MODE }}"
+          echo "⚙️ MODE (shell): $MODE"
 
       - name: 🔧 Step Level Environment with YAML Interpolation
         env:
           GLOBAL_MESSAGE: "🚀 Step Override: ${{ env.MODE }} mode"
           STEP_MESSAGE: "🔧 From step in ${{ env.PLATFORM }}"
         run: |
-          echo "🌍 GLOBAL_MESSAGE (YAML interpolated): $GLOBAL_MESSAGE"
-          echo "🔧 STEP_MESSAGE (YAML interpolated): $STEP_MESSAGE"
-          echo "⚙️ MODE (shell): $MODE"
+          echo "🌍 GLOBAL_MESSAGE (YAML interpolated): ${{ env.GLOBAL_MESSAGE }}"
+          echo "🔧 STEP_MESSAGE (YAML interpolated): ${{ env.STEP_MESSAGE }}"
+          echo "⚙️ MODE (YAML interpolated): ${{ env.MODE }}"
 
   explore-on-windows:
     name: 🔍 Explore on Windows
