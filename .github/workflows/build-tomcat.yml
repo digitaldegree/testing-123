@@ -23,7 +23,7 @@ jobs:
         ref: main                 # The branch, tag or SHA to checkout
         path: ./tomcat            # Relative path under $GITHUB_WORKSPACE
 
-    - name: Setup Java 21
+    - name: Setup Java
       uses: actions/setup-java@v1
       with:
         java-version: 21   # The JDK version to make available on the path
