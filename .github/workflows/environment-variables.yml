@@ -20,7 +20,7 @@ jobs:
           echo "Accessing environment variables using env context"
           echo "${{ env.WORKSPACE_ENVIRONMENT_VARIABLE }}"
           echo "${{ env.JOB_ENVIRONMENT_VARIABLE }}"
-          echo "${{ env.STEP_ENVIRONMENT_VARIABLE }} Not defined"
+          echo "${{ env.STEP_ENVIRONMENT_VARIABLE }} (Not defined)"
   windows:
     env:
       JOB_ENVIRONMENT_VARIABLE: 'custom job environment variable for windows'
@@ -38,4 +38,4 @@ jobs:
           echo "Accessing environment variables using env context"
           echo "${{ env.WORKSPACE_ENVIRONMENT_VARIABLE }}"
           echo "${{ env.JOB_ENVIRONMENT_VARIABLE }}"
-          echo "${{ env.STEP_ENVIRONMENT_VARIABLE }} Not defined"
+          echo "${{ env.STEP_ENVIRONMENT_VARIABLE }} (Not defined)"
