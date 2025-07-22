@@ -45,8 +45,8 @@ jobs:
 
     - name: Test ${{ env.FILE_NAME }}
       run: |
-        chmod +x ./linux/hello-server
-        ./linux/web-server &
+        chmod +x ./linux/${{ env.FILE_NAME }}
+        ./linux/${{ env.FILE_NAME }} &
         sleep 1
         for i in Anakin Luke Leia Kylo Rey;
         do
