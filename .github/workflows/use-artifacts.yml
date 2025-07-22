@@ -45,8 +45,8 @@ jobs:
 
     - name: Test ${{ env.FILE_NAME }}
       run: |
-        chmod +x ./linux/${{ env.FILE_NAME }}
-        ./linux/${{ env.FILE_NAME }} &
+        chmod +x ./${{ env.FILE_NAME }}
+        ./${{ env.FILE_NAME }} &
         sleep 1
         for i in Anakin Luke Leia Kylo Rey;
         do
@@ -65,4 +65,4 @@ jobs:
         name: windows
 
     - name: Test ${{ env.FILE_NAME }}
-      run: windows/${{ env.FILE_NAME }}.exe
+      run: ${{ env.FILE_NAME }}.exe
